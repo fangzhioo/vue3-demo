@@ -142,7 +142,7 @@
         gltf.scene.rotateY(-Math.PI / 2)
         app.scene.add(gltf.scene)
       },
-      xhr => {
+      (xhr: any) => {
         // 模型加载期间的回调函数
         console.log(`${(xhr.loaded / xhr.total) * 100}% building model loaded`)
       },

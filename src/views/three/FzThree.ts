@@ -166,7 +166,7 @@ class FzThree {
         if (!this.mtILoader) {
           this.mtILoader = new MTLLoader()
         }
-        this.mtILoader.load(option.mtlUrl || '', materials => {
+        this.mtILoader.load(option.mtlUrl || '', (materials: any) => {
           materials.preload()
           this.objLoader.setMaterials(materials).load(option.url, option.onLoad, option.onProgress, option.onError)
         })

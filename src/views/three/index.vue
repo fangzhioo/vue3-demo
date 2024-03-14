@@ -21,6 +21,7 @@
   import * as THREE from 'three'
   import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
   import * as TWEEN from '@tweenjs/tween.js'
+import { isDev } from '@/utils/environment'
  
   const prefixKey = 'my-'
   const routerKey = prefixKey + 'router'
@@ -131,9 +132,9 @@
   
     // 3d model
     const loader = new GLTFLoader()
-  
+    const basicPath = isDev ? '' : '/vue3-demo'
     loader.load(
-      '/gltf/low_poly_isometric_baby_girl_room.glb',
+      basicPath + '/gltf/low_poly_isometric_baby_girl_room.glb',
       function (gltf: GLTF) {
         console.log(gltf)
         gltf.scene.name = 'basic-room'
@@ -152,7 +153,7 @@
     )
   
     loader.load(
-      '/gltf/router.glb',
+      basicPath + '/gltf/router.glb',
       function (gltf: GLTF) {
         console.log(gltf)
         gltf.scene.name = routerKey
@@ -161,7 +162,7 @@
   
         app.scene.add(gltf.scene)
       },
-      xhr => {
+      (xhr: any) => {
         // 模型加载期间的回调函数
         console.log(`${(xhr.loaded / xhr.total) * 100}% building model loaded`)
       },
@@ -170,7 +171,7 @@
       }
     )
   
-    const modelLoader = new GLTFLoader().setPath('/gltf/shibahu/')
+    const modelLoader = new GLTFLoader().setPath(basicPath + '/gltf/shibahu/')
     modelLoader.load(
       'scene.gltf',
       function (gltf: GLTF) {
@@ -189,10 +190,10 @@
           action.play()
         }
       },
-      xhr => {
+      (xhr: any) => {
         console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`)
       },
-      error => {
+      (error: any) => {
         console.error(error)
       }
     )

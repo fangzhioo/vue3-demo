@@ -1,0 +1,7 @@
+src/api
+static/
+node_modules/
+dist/
+config/
+build/
+index.html
